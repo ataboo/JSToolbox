@@ -66,7 +66,7 @@
   width: 100%;
 }
 .deduct-inline .wrapper .content {
-  margin: 0 105px 0 110px;
+  margin: 10px 105px 0 110px;
 }
 
 /* for custom day boxes*/
@@ -88,7 +88,7 @@
 
 .deduct-inline .left {
   float: left;
-  width: 105px;
+  width: 60px;
   margin-left:-100%;
 }
 
@@ -156,5 +156,8 @@
 
 .boltpat-inline .right {
   margin-top: 10px;
+}
+
+.day-input{
 }
 

@@ -75,7 +75,7 @@ if (!String.prototype.format)
 			[0, 44701, 89401, 138586],  //brackets
 			[0.15, 0.22, 0.26, 0.29],  //rates
 			[0,3129,6705,10863],  //fed constant (k from table)
-			[2382.53]   //Fed tax credits [sum * 0.15, cpp max + ei max + TD1 default + employment credit]
+			[2382.53]   //Fed tax credits [sum * 0.15, cpp max, ei max, TD1 default, employment credit]
 		];
 		ctx.abTaxTable2015 = [
 			[], //brackets
@@ -134,20 +134,27 @@ if (!String.prototype.format)
 
 		ctx.addTax = [0, $("#textbox-addtax")];
 		ctx.customWage = [40, $("#textbox-wage"), "Custom: ${0}"];
-		ctx.customDays = [
-			[$("textbox-a-sing"), 8.5, $("textbox-a-half"), 2, $("textbox-a-double"), 1.5],
-			[$("textbox-b-sing"), 5, $("textbox-b-half"), 0, $("textbox-b-double"), 0],
-			[$("textbox-c-sing"), 1, $("textbox-c-half"), 2, $("textbox-c-double"), 3]
+		
+                ctx.customDays = [ //textbox, Error label, Default value
+                    [$("#textbox-a-sing"), "Day A Single", 8.5],
+                    [$("#textbox-a-half"), "Day A OT",2], 
+                    [$("#textbox-a-double"), "Day A Double",1.5],
+                    [$("#textbox-b-sing"), "Day B Single", 5], 
+                    [$("#textbox-b-half"), "Day B OT", 0], 
+                    [$("#textbox-b-double"), "Day B Double", 0],
+                    [$("#textbox-c-sing"), "Day C Single", 1], 
+                    [$("#textbox-c-half"), "Day C OT", 2], 
+                    [$("#textbox-c-double"), "Day C Double", 3]
 		];
 		
 		ctx.rateInputs = [  //used to verify
-			[ctx.customWage[1], "Custom Wage", 40],
-			[ctx.addTax[1], "Add Tax", 0],
-			[ctx.loa[2], "LOA", 195],
-			[ctx.meal[2], "Meal Bonus", 40],
-			[ctx.weekTravel[3], "Weekly Travel", 220],
-			[ctx.dayTravel[3], "Daily Travel", 20],
-			[ctx.monthlyDues[3], "Monthly Dues", 37.90]
+                    [ctx.customWage[1], "Custom Wage", 40],
+                    [ctx.addTax[1], "Add Tax", 0],
+                    [ctx.loa[2], "LOA", 195],
+                    [ctx.meal[2], "Meal Bonus", 40],
+                    [ctx.weekTravel[3], "Weekly Travel", 220],
+                    [ctx.dayTravel[3], "Daily Travel", 20],
+                    [ctx.monthlyDues[3], "Monthly Dues", 37.90]
 		];
 
 		ctx.populateSelects();
@@ -248,15 +255,15 @@ if (!String.prototype.format)
 			var dayArr = [0,0,0];
 			var parsed = parseFloat(ctx.weekArr[i].val());
 			if (parsed < 0)
-			{  //custom days A=-1, B=-2, C=-3
-				var customIndex = -(parsed + 1);
-				dayArr[0] = ctx.customDays[customIndex][1];  //Single
-				dayArr[1] = ctx.customDays[customIndex][3];  //OT
-				dayArr[2] = ctx.customDays[customIndex][5];  //Double
+			{  //custom days A=-1, B=-2, C=-3 what an abortion.
+                                var customIndex = (parsed === -1) ? 0 : (parsed === -2) ? 3 : 6;
+				dayArr[0] = ctx.customDays[customIndex][2];  //Single
+				dayArr[1] = ctx.customDays[customIndex + 1][2];  //OT
+				dayArr[2] = ctx.customDays[customIndex + 2][2];  //Double
 			}
 			else
 			{  //Use default 8/2/2 or 4 10s
-				if (i == 0 || i == 6)
+				if (i === 0 || i === 6)
 				{  //Sun || Sat
 					dayArr = ctx.hrsSum(ctx.FIVE_WEEKEND, parsed);
 				}
@@ -268,7 +275,7 @@ if (!String.prototype.format)
 					}
 					else
 					{
-						if (i == 5)
+						if (i === 5)
 						{  //FourTens Friday
 							dayArr = ctx.hrsSum(ctx.FOUR_FRIDAY, parsed);
 						}
@@ -351,18 +358,23 @@ if (!String.prototype.format)
 	
 	ctx.commitSettings = function() {	
 		//don't change values if verify returns false
-		if(!ctx.verifyTextboxValues()) return;
+		if(!ctx.verifyTextboxValues()){
+                    console.log("Setting parse Fail.");
+                    return;
+                }
 		ctx.customWage[0] = parseFloat(ctx.customWage[1].val());
 		//custom wage select option val
 		$("#wage-select option:contains('Custom')").val(ctx.customWage[0]);
-		console.log("Change custom wage val to " + ctx.customWage[0]);
+		//console.log("Change custom wage val to " + ctx.customWage[0]);
 		ctx.addTax[0] = parseFloat(ctx.addTax[1].val());
 		ctx.loa[0] = parseFloat(ctx.loa[2].val());
 		ctx.meal[0] = parseFloat(ctx.meal[2].val());
 		ctx.weekTravel[0] = parseFloat(ctx.weekTravel[3].val());
 		ctx.dayTravel[0] = parseFloat(ctx.dayTravel[3].val());
 		ctx.monthlyDues[0] = parseFloat(ctx.monthlyDues[3].val());
-		
+                
+		for(var i=0; i < ctx.customDays.length; i++)
+                    ctx.customDays[i][2] = parseFloat(ctx.customDays[i][0].val());
 		ctx.updateCalc();
 	};
 
@@ -406,7 +418,7 @@ if (!String.prototype.format)
 		var fedConst = ctx.fedTaxTable2014[2];
 		var fedTaxCred = ctx.fedTaxTable2014[3][0];
                 
-                if(taxYear == 2015) {
+                if(taxYear === 2015) {
                     bracket = ctx.fedTaxTable2015[0];
                     rate = ctx.fedTaxTable2015[1];
                     fedConst = ctx.fedTaxTable2015[2];
@@ -444,7 +456,7 @@ if (!String.prototype.format)
             var abRate = ctx.abTaxTable2014[1][0];
             var abTaxCred = ctx.abTaxTable2014[2][0];
             
-            if(taxYear == 2015){
+            if(taxYear === 2015){
                 abRate = ctx.abTaxTable2015[1][0];
                 abTaxCred = ctx.abTaxTable2015[2][0];
             }
@@ -465,24 +477,26 @@ if (!String.prototype.format)
 	};
 
 	ctx.updateText = function() {
-		//[$("#hours-sum"), "  Hours:  1x: 0  1.5x: 0  2x: 0"];
-		ctx.hoursSumDia[0].text(ctx.hoursSumDia[1].format(ctx.hrsArr[0], ctx.hrsArr[1], ctx.hrsArr[2]));
-		ctx.grossSumDia[0].text(ctx.grossSumDia[1].format(ctx.grossPay.toFixed(2)));
-		ctx.exemptSumDia[0].text(ctx.exemptSumDia[1].format(ctx.taxExempt.toFixed(2)));
-		ctx.deductionsSumDia[0].text(ctx.deductionsSumDia[1].format(ctx.deductions[0].toFixed(2)));
-		ctx.netSumDia[0].text(ctx.netSumDia[1].format(ctx.takeHome.toFixed(2)));
+            //[$("#hours-sum"), "  Hours:  1x: 0  1.5x: 0  2x: 0"];
+            ctx.hoursSumDia[0].text(ctx.hoursSumDia[1].format(ctx.hrsArr[0], ctx.hrsArr[1], ctx.hrsArr[2]));
+            ctx.grossSumDia[0].text(ctx.grossSumDia[1].format(ctx.grossPay.toFixed(2)));
+            ctx.exemptSumDia[0].text(ctx.exemptSumDia[1].format(ctx.taxExempt.toFixed(2)));
+            ctx.deductionsSumDia[0].text(ctx.deductionsSumDia[1].format(ctx.deductions[0].toFixed(2)));
+            ctx.netSumDia[0].text(ctx.netSumDia[1].format(ctx.takeHome.toFixed(2)));
 
-		$("label[for='checkbox-night'] span.ui-btn-text").text(ctx.nightsCheck[1].format(ctx.nightPrem));
-		$("label[for='checkbox-tax'] span.ui-btn-text").text(ctx.taxCheck[1].format((ctx.deductions[1] + ctx.deductions[2]).toFixed(2)));
-		$("label[for='checkbox-ei'] span.ui-btn-text").text(ctx.eiCheck[1].format((ctx.deductions[3] + ctx.deductions[4]).toFixed(2)));
-		$("label[for='checkbox-dues'] span.ui-btn-text").text(ctx.duesCheck[1].format(ctx.deductions[5].toFixed(2)));
-		$("label[for='checkbox-monthly-dues'] span.ui-btn-text").text(ctx.monthlyDues[2].format(ctx.deductions[6].toFixed(2)));
-	    $("label[for='checkbox-travel-week'] span.ui-btn-text").text(ctx.weekTravel[2].format(ctx.weekTravel[0].toFixed(2)));
-	    $("label[for='checkbox-travel-day'] span.ui-btn-text").text(ctx.dayTravel[2].format((ctx.dayTravel[0] * ctx.travelDayCount).toFixed(2)));		
+            $("label[for='checkbox-night']").text(ctx.nightsCheck[1].format(ctx.nightPrem));
+            ctx.nightsCheck[0].text("bananana").checkboxradio("refresh");
+            
+            $("label[for='checkbox-tax']").text(ctx.taxCheck[1].format((ctx.deductions[1] + ctx.deductions[2]).toFixed(2)));
+            $("label[for='checkbox-ei']").text(ctx.eiCheck[1].format((ctx.deductions[3] + ctx.deductions[4]).toFixed(2)));
+            $("label[for='checkbox-dues']").text(ctx.duesCheck[1].format(ctx.deductions[5].toFixed(2)));
+            $("label[for='checkbox-monthly-dues']").text(ctx.monthlyDues[2].format(ctx.deductions[6].toFixed(2)));
+	    $("label[for='checkbox-travel-week']").text(ctx.weekTravel[2].format(ctx.weekTravel[0].toFixed(2)));
+	    $("label[for='checkbox-travel-day']").text(ctx.dayTravel[2].format((ctx.dayTravel[0] * ctx.travelDayCount).toFixed(2)));		
 		
-		//update custom select
-		$("#wage-select option:contains('Custom')").text(ctx.customWage[2].format(ctx.customWage[0]));
-		$("#wage-select").selectmenu("refresh", true);
+            //update custom select
+            $("#wage-select option:contains('Custom')").text(ctx.customWage[2].format(ctx.customWage[0]));
+            $("#wage-select").selectmenu("refresh", true);
 	};
 
 	ctx.runPreset = function(preset) {
@@ -514,22 +528,24 @@ if (!String.prototype.format)
 	ctx.numberRegex = /^[+-]?\d+(\.\d+)?([eE][+-]?\d+)?$/;
 
 	ctx.verifyTextboxValues = function() {
-		//Get string with errors
-		var returnedErrors = ctx.verifyValues(ctx.rateInputs, ctx.RANGE_RATE);
-		
-		//Alert string
-		var alertString = "";
-		if(returnedErrors.length > 0) {
-			for(var i = 0; i < returnedErrors.length; i++) {
-				alertString += returnedErrors[i][0];
-				if(i != returnedErrors.length - 1) {
-					alertString = alertString + "\n";
-				}
-			}
-			alert(alertString);
-			return false;
-		}
-		//change colour of fucked up ones?
+            //Get string with errors
+            var returnedErrors = ctx.verifyValues(ctx.rateInputs, ctx.RANGE_RATE);
+            var combinedErrors = returnedErrors.concat(ctx.verifyValues(ctx.customDays, ctx.VER_HOURS));
+
+            //Alert string
+            var alertString = "";
+            if(combinedErrors.length > 0) {
+                for(var i = 0; i < combinedErrors.length; i++) {
+                        alertString += combinedErrors[i];
+                        if(i !== combinedErrors.length - 1) {
+                                alertString = alertString + "\n";
+                        }
+                }
+                console.log(alertString);
+                alert(alertString);
+                return false;
+            }
+            //change colour of fucked up ones?
         return true;
 	};
 	
@@ -538,15 +554,15 @@ if (!String.prototype.format)
 		$.each(values, function(i, e) {
 		   if (!ctx.numberRegex.test(e[0].val())) {
 			   //alert('Not a Number');
-			   returnErrors.push([e[1] + " is invalid", i]);			   
+			   returnErrors.push(e[1] + " is invalid");			   
 		   } else {
 			   if (e[0].val() < range[0]) {
 				   //alert('Too Low');
-				   returnErrors.push([e[1] + " is too low", i]);
+				   returnErrors.push(e[1] + " is too low");
 			   } else {
 				   if (e[0].val() > range[1]) {
 					   //alert('Too High');
-					   returnErrors.push([e[1] + " is too high", i]);
+					   returnErrors.push(e[1] + " is too high");
 				   }
 			   }
 		   }
