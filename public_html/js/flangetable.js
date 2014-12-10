@@ -74,7 +74,7 @@ var flangeBox = {};  //Used for context to coordinate between the functions.
 	
 	context.addSelectChange = function() {
 		context.flangeSelClass.bind('change', function(){
-			console.log("change");
+			//console.log("change");
 			context.updateSendButton();
 		});
 	};
@@ -92,14 +92,14 @@ var flangeBox = {};  //Used for context to coordinate between the functions.
 		//context.sendBut.button("refresh");
 		
                 context.studBut.prop('disabled', context.studSel[0].selectedIndex == 0);
-                console.log(context.studSel[0].selectedIndex);
+               // console.log(context.studSel[0].selectedIndex);
 		//context.studBut.button("refresh");
 	};
 	
 	context.calcStud = function () {  //called by stud only button 
 		context.studSize = context.studSel.val().replace('"', '');
 		context.studStats = context.getStudStats(context.studSize);
-		console.log("studSize is: " + context.studSize + ", studStats are: " + context.studStats); 
+		//console.log("studSize is: " + context.studSize + ", studStats are: " + context.studStats); 
 		context.displayStud(context.studStats);
 	};
 	
@@ -147,9 +147,9 @@ var flangeBox = {};  //Used for context to coordinate between the functions.
 		fStats = fStatArr[rateIndex];
 		var statString = [];
 		$.each(fStats, function(i, value){
-			console.log("checked: " + i + " against: " + sizeVal);
+			//console.log("checked: " + i + " against: " + sizeVal);
 			if(i == sizeVal) {
-				console.log("getFstats returned: " + value);
+				//console.log("getFstats returned: " + value);
 				statString = value;
 			}
 		});
@@ -160,10 +160,10 @@ var flangeBox = {};  //Used for context to coordinate between the functions.
 		var retVal = [];
 		$.each(context.data.studSizes, function(i, value) {
 			if(i === studSize) {
-				console.log("got stud: " + value);
+				//console.log("got stud: " + value);
 				retVal = value;
 			}
-			console.log("Checking: " + studSize + " against: " + i + " getting: " + (studSize == i));
+			//console.log("Checking: " + studSize + " against: " + i + " getting: " + (studSize == i));
 		});
 		
 		return retVal;

@@ -485,7 +485,6 @@ if (!String.prototype.format)
             ctx.netSumDia[0].text(ctx.netSumDia[1].format(ctx.takeHome.toFixed(2)));
 
             $("label[for='checkbox-night']").text(ctx.nightsCheck[1].format(ctx.nightPrem));
-            ctx.nightsCheck[0].text("bananana").checkboxradio("refresh");
             
             $("label[for='checkbox-tax']").text(ctx.taxCheck[1].format((ctx.deductions[1] + ctx.deductions[2]).toFixed(2)));
             $("label[for='checkbox-ei']").text(ctx.eiCheck[1].format((ctx.deductions[3] + ctx.deductions[4]).toFixed(2)));

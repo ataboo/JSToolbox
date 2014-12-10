@@ -1,13 +1,13 @@
 boltPatternBox = {};
 
 //move to plugins later
-if (typeof String.prototype.startsWith != 'function') {
+if (typeof String.prototype.startsWith !== 'function') {
   // see below for better implementation!
   String.prototype.startsWith = function (str){
-    return this.indexOf(str) == 0;
+    return this.indexOf(str) === 0;
   };
 }
-if(typeof String.prototype.repeat != 'function') {
+if(typeof String.prototype.repeat !== 'function') {
 	String.prototype.repeat = function (num)
 	{
     	return new Array( num + 1 ).join( this );
@@ -40,18 +40,17 @@ if(typeof String.prototype.repeat != 'function') {
 		ctx.PATTERN_EIGHT = 1;
 		
 		ctx.setBinds();
-		console.log("they calling me");
 		//ctx.updatePatVis();
 	};
 	
 	ctx.setBinds = function() {
 		ctx.patternSel.bind('change', function(){
-			console.log("select changed");
+			//console.log("select changed");
 			ctx.updatePatVis();
 		});
 		
 		ctx.goButton.bind('click', function(){
-			console.log("pushed bootan");
+			//console.log("pushed bootan");
 			ctx.calcPattern();
 		});
 	};
@@ -94,7 +93,7 @@ if(typeof String.prototype.repeat != 'function') {
 		var factor = 0;
 		var basePat = [];
 		
-		if(type == ctx.PATTERN_FOUR){
+		if(type === ctx.PATTERN_FOUR){
 			factor = 4;
 			basePat = [1,3,2,4];
 		} else{
@@ -108,7 +107,7 @@ if(typeof String.prototype.repeat != 'function') {
 			for(var j=basePat[i]; j < studCount + 1; j+=factor){
 				if(j !== 1){
 					seqOut += ", ";
-					if(j == basePat[i]) {
+					if(j === basePat[i]) {
 						seqOut += "&nbsp&nbsp<b>";
 						boldFlag = true;
 					}
