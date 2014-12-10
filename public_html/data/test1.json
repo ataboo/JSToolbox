@@ -1,0 +1,6 @@
+{
+	"obj1": "this is the first one",
+	"obj2": "second obj1",
+	"obj3": "5",
+	"obj4": {"first": "1", "second": "2", "third": "3", "fourth": "4"}
+}

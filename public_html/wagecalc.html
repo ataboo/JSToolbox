@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<meta charset="utf-8">
+	<title>Wage Calculator</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+	<link rel="stylesheet" href="css/ata.bmtoolbox.css">
+	  <script>
+	  if(typeof jQuery == 'undefined') {
+		document.write('<script src="js/vendor/jquery-1.11.1.min.js"><\/script>');
+	    document.write('<script src="js/vendor/jquery.mobile-1.4.5.min.js"><\/script>');
+	    document.write('<script src="js/vendor/fastclick.js"><\/script>');
+	    document.write('<script src="js/plugins.js"><\/script>');};
+    </script>  
+  </head>
+  <body>
+	<div data-role="page" id="wage-page">
+	  <script src="js/wagecalc.js"></script>
+	  <div data-role="header" data-id="navbarlinker" data-position="fixed">
+		<div data-role="navbar">
+		  <ul>
+			<li><a href="index.html">Flange-Calc</a></li>
+			<li><a href="wagecalc.html" class="ui-btn-active ui-state-persist">Wage-Calc</a></li>
+			<li><a href="boltpattern.html">Bolt Pattern</a></li>
+		  </ul>
+		</div><!-- /navbar -->
+	  </div><!-- /header -->
+
+	  <div data-role="content">
+		<!-- Wagecalc headers  -->
+		<div class="days-label-wrapper">
+		  <div>Sun</div>
+		  <div>Mon</div>
+		  <div>Tue</div>
+		  <div>Wed</div>
+		  <div>Thu</div>
+		  <div>Fri</div>
+		  <div>Sat</div>
+		  <span class="stretcher"></span>
+		</div>
+
+		<!-- Wagecalc selects  -->
+		<div class="center-wrapper">
+		  <div data-role="fieldcontain" class="days-fieldset">
+			<fieldset data-role="controlgroup" data-type="horizontal" class="centered-bar">
+			  <label for="sun-hours-select">Sunday Hours</label>
+			  <select data-mini="true" data-icon="false"
+				class="select-day" name="sun-hours-select" id="sun-hours-select">
+			  </select>
+			  <label for="mon-hours-select">Monday Hours</label>
+			  <select data-mini="true" data-icon="false"
+				class="select-day" name="mon-hours-select" id="mon-hours-select">
+			  </select>
+			  <label for="tue-hours-select">Tuesday Hours</label>
+			  <select data-mini="true" data-icon="false"
+				class="select-day" name="tue-hours-select" id="tue-hours-select">
+			  </select>
+			  <label for="wed-hours-select">Wednesday Hours</label>
+			  <select data-mini="true" data-icon="false"
+				class="select-day" name="wed-hours-select" id="wed-hours-select">
+			  </select>
+			  <label for="thu-hours-select">Thursday Hours</label>
+			  <select data-mini="true" data-icon="false"
+				class="select-day" name="thu-hours-select" id="thu-hours-select">
+			  </select>
+			  <label for="fri-hours-select">Friday Hours</label>
+			  <select data-mini="true" data-icon="false"
+				class="select-day" name="fri-hours-select" id="fri-hours-select">
+			  </select>
+			  <label for="sat-hours-select">Saturday Hours</label>
+			  <select data-mini="true" data-icon="false"
+				class="select-day" name="sat-hours-select" id="sat-hours-select">
+			  </select>
+			</fieldset>
+		  </div>
+		  <div id="hours-sum" class="text-dialogue">    1x: 0, 1.5x: 0 2x: 0, total: 0</div>
+		</div>
+		<hr>
+		  
+		<div class="preset-inline">
+		  <div class="wrapper">
+			<div class="preset-but">
+			  <input type="button" id="preset-clear" value="Clear"/>			  
+			</div>
+			<div class="preset-but">
+			  <input type="button" id="preset-tens" value="10s"/>			  
+			</div>  
+			<div class="preset-but">
+		      <input type="button" id="preset-twelves" value="12s"/>			  
+			</div>
+		  </div>
+		  
+		</div>
+		<div class="checkbox-area">
+		  <h3>Wages:</h3>
+		  <select class="select-check" name="wage-select" id="wage-select"></select>
+		  
+		  <div class="loa-inline">
+		    <div class="wrapper">
+			  <div class="left">
+			    <label for="loa-select">LOA Days:</label>
+				<select data-mini="true" name="loa-select" id="loa-select"></select>
+		      </div>
+			  <div class="left">
+				<label for="meal-select">Meal Days:</label>
+				<select data-mini="true" name="meal-select" id="meal-select"></select>
+		      </div>
+			</div>
+			<div class="footer"></div>
+		  </div>  <!--LOA inline -->
+		  
+		  <label><input type="checkbox" id="checkbox-fourtens" class="toggle-check"/>Four-Tens Schedule</label>
+		  <label for="checkbox-night"><input type="checkbox" id="checkbox-night" class="toggle-check"/>Nights = $0.00</label>
+		  <label for="checkbox-travel-week"><input type="checkbox" id="checkbox-travel-week" class="toggle-check"/>Travel (week) = $216.00</label>
+		  <label for="checkbox-travel-day"><input type="checkbox" id="checkbox-travel-day" class="toggle-check"/>Travel (day) = $25.00</label>
+		  <div class="title-dialogue" id="gross-sum-dialogue">    Taxable Gross: $0</div>
+		  <div class="title-dialogue" id="exempt-sum-dialogue">    Exempt Gross: $0</div>	
+		</div>
+		<hr>
+		<div class="checkbox-area">
+		  <h3>Deductions:</h3>
+		  <select data-mini="true" class="select-day" id="tax-select">
+			<option> Income Tax AB 2014 </option>
+			<option> Income Tax AB 2015 </option>
+		  </select>
+		  <label for="checkbox-tax"><input type="checkbox" id="checkbox-tax" class="toggle-check"/> Income Tax = $0.00 </label>
+		  <label for="checkbox-ei"><input type="checkbox" id="checkbox-ei" class="toggle-check"/> EI/CPP = $0.00</label>
+		  <label for="checkbox-dues"><input type="checkbox" id="checkbox-dues" class="toggle-check"/> Working Dues = $0.00</label>
+		  <label for="checkbox-monthly-dues"><input type="checkbox" id="checkbox-monthly-dues" class="toggle-check"/> Monthly Dues = $0.00</label>
+		  <div class="title-dialogue" id="deductions-dialogue">    Total Deductions: $0</div>
+		  <h3 class="header-dialogue" id="takehome-dialogue">    Takehome: $0</h3>
+		</div>
+
+		<div data-role="collapsible">  <!--Custom Values-->
+		  <h3>Change Values</h3>
+		  <div class="apply-inline"> <!--Apply Header-->
+			<p class="text">Change values and hit save.</p>
+			<div class="right">
+			  <input type="button" id="apply-button" data-icon="check" value="Save" data-inline="true"/>			  
+			</div>
+			<div class="footer"/>
+		  </div>
+		  <hr>
+		  <div class="deduct-inline"> <!--Wage-->
+			<div class="wrapper">
+			  <div class="content">
+				<input data-mini="true" id="textbox-wage" name="textbox-wage" size="30" type="number" value="40"/>
+			  </div>
+			</div>
+			<div class="left text">
+			  Custom Wage:
+			</div>
+			<div class="footer"></div>
+		  </div> <!--Wage -->
+
+		  <div class="deduct-inline">  <!--LOA-->
+			<div class="wrapper">
+			  <div class="content">
+				<input data-mini="true" id="textbox-loa" name="textbox-loa" size="30" type="number" value="195"/>
+			  </div>
+			</div>
+			<div class="left text">
+			  LOA Rate:
+			</div>
+			<div class="footer"></div>
+		  </div> <!--LOA-->
+		  <div class="deduct-inline">  <!--Meals-->
+			<div class="wrapper">
+			  <div class="content">
+				<input data-mini="true" id="textbox-meal" name="textbox-meal" size="30" type="number" value="40"/>
+			  </div>
+			</div>
+			<div class="left text">
+			  Meal Rate:
+			</div>
+			<div class="footer"></div>
+		  </div> <!--Meals-->
+		  
+		  <div class="deduct-inline">  <!--Weekly Travel-->
+			<div class="wrapper">
+			  <div class="content">
+				<input data-mini="true" id="textbox-weekly-travel" name="textbox-weekly-travel" size="30" type="number" value="220"/>
+			  </div>
+			</div>
+			<div class="left text">
+			  Travel (week):
+			</div>
+			<div class="right">
+			  <label for="taxable-weekly-travel"><input type="checkbox" id="taxable-weekly-travel" data-mini="true"/>Taxable</label>			  
+			</div>
+			<div class="footer"></div>
+		  </div> <!--Weekly Travel-->
+
+		  <div class="deduct-inline">  <!--Daily Travel-->
+			<div class="wrapper">
+			  <div class="content">
+				<input data-mini="true" id="textbox-daily-travel" name="textbox-daily-travel" size="30" type="number" value="20"/>
+			  </div>
+			</div>
+			<div class="left text">
+			  Travel (day):
+			</div>
+			<div class="right">
+			  <label for="taxable-daily-travel"><input type="checkbox" id="taxable-daily-travel" data-mini="true"/>Taxable</label>			  
+			</div>
+			<div class="footer"></div>
+		  </div> <!--Daily Travel-->
+
+		  <div class="deduct-inline">  <!--Monthly Dues-->
+			<div class="wrapper">
+			  <div class="content">
+				<input data-mini="true" id="textbox-monthly-dues" name="textbox-monthly-dues" size="30" type="number" value="37.90" />
+			  </div>
+			</div>
+			<div class="left text">
+			  Monthly Dues:
+			</div>
+			<div class="footer"></div>
+		  </div> <!--Monthly Dues-->
+
+
+		  <div class="deduct-inline">  <!--Add Tax-->
+			<div class="wrapper">
+			  <div class="content">
+				<input data-mini="true" id="textbox-addtax" name="textbox-addtax" size="30" type="number" value="0" />
+			  </div>
+			</div>
+			<div class="left text">
+			  Add Tax:
+			</div>
+			<div class="footer"></div>
+		  </div> <!--Add Tax-->
+		  <hr>
+		  <p>Enter custom days A, B, and C (1x, 1.5x, 2x)</p>
+		  <div class="deduct-inline">  <!--Day A-->
+			<div class="wrapper">
+			  <div class="left-cont">
+				<input data-mini="true" id="textbox-a-sing" name="textbox-a-sing" size="30" type="number" value="8.5"/>
+			  </div>
+			  <div class="cent-cont">
+				<input data-mini="true" id="textbox-a-half" name="textbox-a-half" size="30" type="number" value="2"/>
+			  </div>
+			  <div class="right-cont">
+				<input data-mini="true" id="textbox-a-double" name="textbox-a-double" size="30" type="number" value="1.5"/>
+			  </div>
+			</div>
+			<div class="left text">
+			  Day A:
+			</div>
+			<div class="footer"></div>
+		  </div> <!--Day A-->
+		  <div class="deduct-inline">  <!--Day B-->
+			<div class="wrapper">
+			  <div class="left-cont">
+				<input data-mini="true" id="textbox-b-sing" name="textbox-b-sing" size="30" type="number" value="5"/>
+			  </div>
+			  <div class="cent-cont">
+				<input data-mini="true" id="textbox-b-half" name="textbox-b-half" size="30" type="number" value="0"/>
+			  </div>
+			  <div class="right-cont">
+				<input data-mini="true" id="textbox-b-double" name="textbox-b-double" size="30" type="number" value="0"/>
+			  </div>
+			</div>
+			<div class="left text">
+			  Day B:
+			</div>
+			<div class="footer"></div>
+		  </div> <!--Day B-->
+		  <div class="deduct-inline">  <!--Day C-->
+			<div class="wrapper">
+			  <div class="left-cont">
+				<input data-mini="true" id="textbox-c-sing" name="textbox-c-sing" size="30" type="number" value="1"/>
+			  </div>
+			  <div class="cent-cont">
+				<input data-mini="true" id="textbox-c-half" name="textbox-c-half" size="30" type="number" value="2"/>
+			  </div>
+			  <div class="right-cont">
+				<input data-mini="true" id="textbox-c-double" name="textbox-c-double" size="30" type="number" value="3"/>
+			  </div>
+			</div>
+			<div class="left text">
+			  Day C:
+			</div>
+			<div class="footer"></div>
+		  </div> <!--Day C-->
+
+		</div>  <!--custom values-->
+
+
+
+
+	  </div>   <!--content-->
+	</div> <!-- page -->
+  </body>
+</html>
+
+

@@ -1,0 +1,160 @@
+.center-wrapper{
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.flange-wrapper{
+  margin: 0 10px 0 10px;
+}
+
+.days-fieldset .ui-controlgroup-controls {
+    width: 100%;
+    text-align:center;
+    margin:0 auto;
+}
+
+.days-fieldset .ui-controlgroup-controls .ui-select {
+    width: 14.2857%;
+}
+
+.days-label-wrapper {
+    width:82%;
+    height: 10px;
+    margin:0 auto;
+    text-align: justify;
+    -ms-text-justify: distribute-all-lines;
+    text-justify: distribute-all-lines;
+}
+
+.days-label-wrapper div {
+    width: auto;
+    height: 10px;
+    display: inline-block;
+    *display: inline;
+    zoom: 1
+}
+
+.stretcher {
+    width: 100%;
+    display: inline-block;
+    font-size: 0;
+    line-height: 0;
+}
+
+.checkbox-area {
+	width:95%;
+    margin:0 auto;
+}
+
+.checkbox-area .ui-select, 
+.checkbox-area .ui-checkbox,
+.checkbox-area .check-label {
+	/*background-color: red;*/
+	vertical-align: middle;
+}
+
+/*
+.checkbox-area .ui-checkbox {
+	background-color: red;
+	
+}
+*/
+
+/*inline for custom values menu-------------------------*/
+.deduct-inline .wrapper {
+  float: left;
+  width: 100%;
+}
+.deduct-inline .wrapper .content {
+  margin: 0 105px 0 110px;
+}
+
+/* for custom day boxes*/
+.deduct-inline .wrapper .left-cont {
+  margin-left: 60px;
+  margin-right: 5px;
+  float:left;
+  width: 60px;
+}
+.deduct-inline .wrapper .cent-cont {
+  margin-right: 5px;
+  float:left;
+  width: 60px;
+}
+.deduct-inline .wrapper .right-cont {
+  float:left;
+  width: 60px;
+}
+
+.deduct-inline .left {
+  float: left;
+  width: 105px;
+  margin-left:-100%;
+}
+
+.deduct-inline .text {
+  padding-top:0.7em;
+  padding-bottom:0.7em;
+  display: block;
+  font-size: 16px;  
+}
+.deduct-inline .right {
+  float: left;
+  width: 100px;
+  margin-left: -100px;
+}
+
+.deduct-inline .footer {
+  clear: left;  
+}
+
+/*for apply button in collapsibles-----------------*/
+.apply-inline .text {
+  float: left;
+}
+
+.apply-inline .right {
+  float: right;
+}
+
+.apply-inline .footer {
+  clear: left;
+}
+
+/*preset buttons--------------*/
+.preset-inline .wrapper {
+  float: left;
+  width: 98%;
+  margin: auto;
+}
+
+.preset-inline .preset-but {
+  float: left;
+  width: 85px;
+  margin-left:5px;
+}
+
+/* loa inline -----------------------*/
+.loa-inline .wrapper{
+  float: left;
+  width: 100%;
+}
+
+.loa-inline .left {
+  float: left;
+  margin: 0 5px 0 5px;
+  width: 100px;
+}
+
+.loa-inline .footer {
+  clear: left;
+}
+
+.boltpat-inline .wrapper .content {
+  margin-top: 13px;
+}
+
+.boltpat-inline .right {
+  margin-top: 10px;
+}
+
