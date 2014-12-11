@@ -466,9 +466,9 @@ if (!String.prototype.format)
 	};
 
 	ctx.cppEiDues = function(gross, grossNoVac) {
-		retArr = [0,0,0];
-		rates = ctx.cppEiDuesRates;
-		anGross = gross * 52;
+		var retArr = [0,0,0];
+		var rates = ctx.cppEiDuesRates;
+		var anGross = gross * 52;
 		retArr[0] = (anGross - 3500) / 52 * rates[0];
 		retArr[1] = gross * rates[1];
 		retArr[2] = grossNoVac * rates[2];  //dues
@@ -571,7 +571,7 @@ if (!String.prototype.format)
 
 })(wageCalcBox);
 
-$("#wage-page").bind('pageinit',  function(){
+$("#wage-page").on('pagecreate',  function(){
+    console.log("ran page init");
     wageCalcBox.setupAndStart();
-	console.log("ran page init");
 });

@@ -40,10 +40,10 @@ var flangeBox = {};  //Used for context to coordinate between the functions.
 	};
 	
 	context.popSelects = function() {
-		data = context.data;
-		selectSize = context.sizeSel;
-		selectRate = context.rateSel;
-		selectStud = context.studSel;
+		var data = context.data;
+		var selectSize = context.sizeSel;
+		var selectRate = context.rateSel;
+		var selectStud = context.studSel;
 		
 		$.each(data.fSizes, function(i, value) {
 	   		selectSize.append($('<option>').text(value + "\"").attr('value', value));
@@ -52,13 +52,13 @@ var flangeBox = {};  //Used for context to coordinate between the functions.
 	   		selectRate.append($('<option>').text(value + "#").attr('value', value));
 		});
 	
-		studSizes = data.studSizes;
-		studSizeOrd = data.studSizeOrdered;
+		var studSizes = data.studSizes;
+		var studSizeOrd = data.studSizeOrdered;
 		var studStatsOrdered = [];
 		
 		for(var i = 0; i < studSizeOrd.length; i++) {
 			selectStud.append($('<option>').text(studSizeOrd[i] + "\"").attr('value', studSizeOrd[i] + "\""));
-			studSizeOrdString = studSizeOrd[i].toString();
+			var studSizeOrdString = studSizeOrd[i].toString();
 			//console.log(studSizeOrdString);
 			studStatsOrdered[i] = [studSizes[studSizeOrdString]];
 		} 
@@ -105,11 +105,11 @@ var flangeBox = {};  //Used for context to coordinate between the functions.
 	
 	context.displayStud = function(studStats){
 		var studSize = context.studSize;
-		studString = ("Stud Size: " + studSize + "\"");
-		toolString = ("Wrench: " + studStats[0] + "\",   Drift Pin: " + studStats[1] + "\"");
-		torqueString = ("B7 Torque: " + studStats[3] + " ft-lbs \nB7M Torque: " + studStats[2] + " ft-lbs");
+		var studString = ("Stud Size: " + studSize + "\"");
+		var toolString = ("Wrench: " + studStats[0] + "\",   Drift Pin: " + studStats[1] + "\"");
+		var torqueString = ("B7 Torque: " + studStats[3] + " ft-lbs \nB7M Torque: " + studStats[2] + " ft-lbs");
 		
-		outString = (studString + "\n" +
+		var outString = (studString + "\n" +
 			toolString + "\n" +
 			torqueString);
 		
@@ -117,16 +117,16 @@ var flangeBox = {};  //Used for context to coordinate between the functions.
 	};
 	
 	context.calcFlange = function() {
-		sSize = context.sizeSel;
-		sRate = context.rateSel;
+		var sSize = context.sizeSel;
+		var sRate = context.rateSel;
 	
-		rateInd = sRate[0].selectedIndex;  //flange rating select index
+		var rateInd = sRate[0].selectedIndex;  //flange rating select index
 		context.rateVal = sRate.val();
-		context.sizeVal = sizeVal = $(sSize).val();  //might not make global
+		context.sizeVal = $(sSize).val();  //might not make global
 		
 		//Inside the $.each() callback above, you would do $.each(this.subaction, function() { alert(this.name); });, that would give you A, B, C, etc. - test it out here:
 			
-		context.flangeStats = context.getFStats(rateInd, sizeVal);
+		context.flangeStats = context.getFStats(rateInd, context.sizeVal);
 		//console.log("flange stats is defined and [0] is: " + context.flangeStats[0]);
 		context.studStats = context.getStudStats(context.flangeStats[0]);
 		//console.log("studStats is: " + context.studStats);
@@ -144,7 +144,7 @@ var flangeBox = {};  //Used for context to coordinate between the functions.
 			context.data.fStats1500
 		];
 		
-		fStats = fStatArr[rateIndex];
+		var fStats = fStatArr[rateIndex];
 		var statString = [];
 		$.each(fStats, function(i, value){
 			//console.log("checked: " + i + " against: " + sizeVal);
@@ -174,10 +174,10 @@ var flangeBox = {};  //Used for context to coordinate between the functions.
 	//studStats = studSize: [wrench size, drift pin, b7m torque, b7 torque]
 	//flangeStats = flangeSize: [studSize, studIndex, studCount, studLength] 
 	
-	flangeString = ("Flange Size: " + context.sizeVal + "\": " + context.rateVal + "#");
-	studString = ("Studs: " + flangeStats[2] + " @ " + flangeStats[0] + "\" x " + flangeStats[3] + "\"");
-	toolString = ("Wrench: " + studStats[0] + "\",   Drift Pin: " + studStats[1] + "\"");
-	torqueString = ("B7 Torque: " + studStats[3] + " ft-lbs \nB7M Torque: " + studStats[2] + " ft-lbs");
+	var flangeString = ("Flange Size: " + context.sizeVal + "\": " + context.rateVal + "#");
+	var studString = ("Studs: " + flangeStats[2] + " @ " + flangeStats[0] + "\" x " + flangeStats[3] + "\"");
+	var toolString = ("Wrench: " + studStats[0] + "\",   Drift Pin: " + studStats[1] + "\"");
+	var torqueString = ("B7 Torque: " + studStats[3] + " ft-lbs \nB7M Torque: " + studStats[2] + " ft-lbs");
 	
 	alert(flangeString + "\n" + 
 		studString + "\n"
@@ -187,9 +187,9 @@ var flangeBox = {};  //Used for context to coordinate between the functions.
 	
 })(flangeBox);
 
-$("#flange-page").bind('pageinit', function(){
+$("#flange-page").on('pagecreate', function(){
     console.log("triggered flange load");
-	flangeBox.startLoad();
+    flangeBox.startLoad();
 });
 
 			

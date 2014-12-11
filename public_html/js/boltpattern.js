@@ -89,7 +89,7 @@ if(typeof String.prototype.repeat !== 'function') {
 	
 	ctx.genSequence = function(studCount, type){
 		//switch-case if needed later
-		seqOut = "Pattern: &nbsp";
+		var seqOut = "Pattern: &nbsp";
 		var factor = 0;
 		var basePat = [];
 		
@@ -147,7 +147,7 @@ if(typeof String.prototype.repeat !== 'function') {
 	
 }) (boltPatternBox);
 
-$("#bolt-page").bind('pagecreate', "#bolt-page", function(){
+$("#bolt-page").on('pagecreate', "#bolt-page", function(){
     boltPatternBox.setupAndStart();
 	console.log("ran page init bolt page");
 });
