@@ -26,6 +26,8 @@ if (!String.prototype.format)
 		ctx.FOUR_WEEKDAY = 2;  //four tens
 		ctx.FOUR_FRIDAY = 3;  //four tens
 
+                ctx.aboutBlurb = "Boilermaker JBox is for info only.\nIf buggy, reset your browser cache.\nComments or Questions: bmtoolbox@gmail.com\n\nLast Updated: December 12, 2014";
+
 		ctx.wageOptions = [
 			["Helper", 32.24],
 			["1st Year", 25.25], 
@@ -124,6 +126,8 @@ if (!String.prototype.format)
 		];
 		
 		ctx.saveButton = $("#apply-button");
+                
+                
 
 		//[value, checkbox, string proto, custom textbox, taxable checkbox]
 		ctx.weekTravel = [220, $("#checkbox-travel-week"), "Weekly Travel = ${0}", $("#textbox-weekly-travel"), $("#taxable-weekly-travel")];
@@ -205,6 +209,10 @@ if (!String.prototype.format)
 		ctx.saveButton.bind('click', function(){
 			ctx.commitSettings();
 		});
+
+                $("#about-but-wage").bind('click', function(){
+                    alert(ctx.aboutBlurb);
+                });
 		/*
 		$(document.body).bind('pageinit', function() {
 	        wageCalcBox.setDefaultValues();

@@ -16,7 +16,7 @@
 	<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
 	<link rel="stylesheet" href="css/ata.bmtoolbox.css">
 <script>
-if (typeof jQuery == 'undefined')
+if (typeof jQuery === 'undefined')
 {
 	document.write('<script src="js/vendor/jquery-1.11.1.min.js"><\/script>');
 	document.write('<script src="js/vendor/jquery.mobile-1.4.5.min.js"><\/script>');
@@ -33,12 +33,13 @@ if (typeof jQuery == 'undefined')
 	<div data-role="page" id="flange-page">
         <script src="js/flangetable.js"></script>
 	  <div data-role="header" data-id="navbarlinker" data-position="fixed">
-		<div data-role="navbar">
+		<div data-role="navbar" class="head-navbar">
 		  <ul>
 			<li><a href="index.html" class="ui-btn-active ui-state-persist">Flange-Calc</a></li>
 			<li><a href="wagecalc.html">Wage-Calc</a></li>
 			<li><a href="boltpattern.html">Bolt Pattern</a></li>
 		  </ul>
+                  <button id="about-but-flange" class="ui-btn ui-icon-info ui-btn-icon-notext aboutb" ></button>
 		</div><!-- /navbar -->
 	  </div><!-- /header -->
 	  <div class="flange-wrapper">

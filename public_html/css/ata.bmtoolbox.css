@@ -161,3 +161,15 @@
 .day-input{
 }
 
+.head-navbar ul {
+    margin: 0;
+    overflow: hidden;
+    width: 90%;
+}
+
+.aboutb {
+    float: right;
+    margin: -30px 2px 0px 0px;
+    width: 10%;
+}
+

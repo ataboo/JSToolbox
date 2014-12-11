@@ -16,31 +16,33 @@ if(typeof String.prototype.repeat !== 'function') {
 
 (function(ctx) {
 	ctx.setupAndStart = function() {
-		ctx.studCount = 24;
-		ctx.patternType = 0;
-		ctx.goButton = $("#boltpat-go");
-		ctx.patternSel = $("#boltpat-select");
-		ctx.patternVis = $("#boltpat-vis");
-		ctx.sequenceOut = $("#boltpat-out");
-		ctx.studCountInput = $("#boltpat-stud-count");
-		
-		ctx.visuals = [  //s==&nbsp, l==<br>
-		    ["s10", "1", "l2", 
-			"4", "s17", "3", "l2", 
-			"s10", "2"],
-			
-			["s10", "1", "l1", 
-			"s4", "8", "s9", "5", "l1", 
-			"4", "s17", "3", "l1",
-			"s4", "6", "s9", "7", "l1",
-			"s10", "2"]
-		];
-		
-		ctx.PATTERN_FOUR = 0;
-		ctx.PATTERN_EIGHT = 1;
-		
-		ctx.setBinds();
-		//ctx.updatePatVis();
+            ctx.aboutBlurb = "Boilermaker JBox is for info only.\nIf buggy, reset your browser cache.\nComments or Questions: bmtoolbox@gmail.com\n\nLast Updated: December 12, 2014";
+
+            ctx.studCount = 24;
+            ctx.patternType = 0;
+            ctx.goButton = $("#boltpat-go");
+            ctx.patternSel = $("#boltpat-select");
+            ctx.patternVis = $("#boltpat-vis");
+            ctx.sequenceOut = $("#boltpat-out");
+            ctx.studCountInput = $("#boltpat-stud-count");
+
+            ctx.visuals = [  //s==&nbsp, l==<br>
+                ["s10", "1", "l2", 
+                    "4", "s17", "3", "l2", 
+                    "s10", "2"],
+
+                    ["s10", "1", "l1", 
+                    "s4", "8", "s9", "5", "l1", 
+                    "4", "s17", "3", "l1",
+                    "s4", "6", "s9", "7", "l1",
+                    "s10", "2"]
+            ];
+
+            ctx.PATTERN_FOUR = 0;
+            ctx.PATTERN_EIGHT = 1;
+
+            ctx.setBinds();
+            //ctx.updatePatVis();
 	};
 	
 	ctx.setBinds = function() {
@@ -53,6 +55,12 @@ if(typeof String.prototype.repeat !== 'function') {
 			//console.log("pushed bootan");
 			ctx.calcPattern();
 		});
+                
+                console.log("got to bind");
+                $("#about-but-bolt").bind('click', function(){
+                    alert(ctx.aboutBlurb);
+                    console.log("tried to alert");
+                });
 	};
 	
 	ctx.updatePatVis = function() {
@@ -147,7 +155,7 @@ if(typeof String.prototype.repeat !== 'function') {
 	
 }) (boltPatternBox);
 
-$("#bolt-page").on('pagecreate', "#bolt-page", function(){
+$("#bolt-page").bind('pagecreate', "#bolt-page", function(){
     boltPatternBox.setupAndStart();
 	console.log("ran page init bolt page");
 });

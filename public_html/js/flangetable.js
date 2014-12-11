@@ -10,7 +10,8 @@ var flangeBox = {};  //Used for context to coordinate between the functions.
 		$(function() {
             //FastClick.attach(document.body);
         });
-		
+		context.aboutBlurb = "Boilermaker JBox is for info only.\nIf buggy, reset your browser cache.\nComments or Questions: bmtoolbox@gmail.com\n\nLast Updated: December 12, 2014";
+                
 		$("#flange-send").click(function(){
 			context.calcFlange();
 		});
@@ -69,6 +70,11 @@ var flangeBox = {};  //Used for context to coordinate between the functions.
 		
 		context.studBut = $("#stud-send");
                 context.studBut.prop('disabled', true);
+                
+                $("#about-but-flange").bind('click', function(){
+                    alert(context.aboutBlurb);
+                });
+                
 		context.addSelectChange();	
 	};
 	
