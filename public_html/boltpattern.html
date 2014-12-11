@@ -1,81 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-	<meta charset="utf-8">
-	<title>Bolt Pattern</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
-	<link rel="stylesheet" href="css/ata.bmtoolbox.css">
-<script>
-	  if(typeof jQuery === 'undefined') {
-		document.write('<script src="js/vendor/jquery-1.11.1.min.js"><\/script>');
-	    document.write('<script src="js/vendor/jquery.mobile-1.4.5.min.js"><\/script>');
-	    document.write('<script src="js/vendor/fastclick.js"><\/script>');
-	    document.write('<script src="js/plugins.js"><\/script>');};
-</script>  
-  </head>
-  <body>
-	<div data-role="page" id="bolt-page">  
-	  <script src="js/boltpattern.js"></script>
-	  <div data-role="header" data-id="navbarlinker" data-position="fixed">
-		<div data-role="navbar" class="head-navbar">
-		  <ul>
-			<li><a href="index.html">Flange-Calc</a></li>
-			<li><a href="wagecalc.html">Wage-Calc</a></li>
-			<li><a href="boltpattern.html" class="ui-btn-active ui-state-persist">Bolt Pattern</a></li>
-		  </ul>
+    <head>
+        <meta charset="utf-8">
+        <title>Bolt Pattern</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+        <link rel="stylesheet" href="css/ata.bmtoolbox.css">
+        <script>
+            if(typeof jQuery === 'undefined') {
+                document.write('<script src="js/vendor/jquery-1.11.1.min.js"><\/script>');
+                document.write('<script src="js/vendor/jquery.mobile-1.4.5.min.js"><\/script>');
+                document.write('<script src="js/vendor/fastclick.js"><\/script>');
+                document.write('<script src="js/plugins.js"><\/script>');};
+        </script>  
+    </head>
+    <body>
+        <div data-role="page" id="bolt-page">  
+            <script src="js/boltpattern.js"></script>
+            <div data-role="header" data-id="navbarlinker" data-position="fixed">
+                <div data-role="navbar" class="head-navbar">
+                    <ul>
+                        <li><a href="index.html">Flange-Calc</a></li>
+                        <li><a href="wagecalc.html">Wage-Calc</a></li>
+                        <li><a href="boltpattern.html" class="ui-btn-active ui-state-persist">Bolt Pattern</a></li>
+                    </ul>
                     <button id="about-but-bolt" class="ui-btn ui-icon-info ui-btn-icon-notext aboutb" ></button>
-		</div><!-- /navbar -->
-	  </div><!-- /header -->
-
-	  <div data-role="content">
-		<div class="deduct-inline boltpat-inline">  <!--Daily Travel-->
-		  <div class="wrapper">
-			<div class="content">
-			  <input data-mini="true" id="boltpat-stud-count" name="boltpat-stud-count" type="number" value="24"/>
-			</div>
-		  </div>
-		  <div class="left text">
-			Stud Count:
-		  </div>
-		  <div class="right">
-			<input type="button" data-mini="true" id="boltpat-go" value="Go"/>			  
-		  </div>
-		  <div class="footer"></div>
-		  <label for="boltpat-select">Pattern type:</label>
-		  <select data-mini="true" name="boltpat-select" id="boltpat-select">
-			<option>Rolling 4-pt</option>
-			<option>Rolling 8-pt</option>
-		  </select>
-		</div> <!--Bolt Input-->
-		<hr>
-		<div id="boltpat-out">
-			Pattern:  
-		</div>
-		<hr>
-		<div id="boltpat-vis">    
-		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1<br>
-		  <br>
-		  4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3<br> 
-		  <br>
-		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2
-		</div> 
-		
-		<!--
-		<div id="boltpat-vis">    
-		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1<br>
-		  &nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5<br>
-		  4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3<br> 
-		  &nbsp;&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7<br>
-		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2
-		</div>
-		-->
-		
-		
-		
-	  </div>   <!--content-->
-	</div> <!-- page -->
-  </body>
+                </div><!-- /navbar -->
+            </div><!-- /header -->
+            
+            <div data-role="content">
+                <div class="deduct-inline boltpat-inline">  <!--Daily Travel-->
+                    <div class="wrapper">
+                        <div class="content">
+                            <input data-mini="true" id="boltpat-stud-count" name="boltpat-stud-count" type="number" value="24"/>
+                        </div>
+                    </div>
+                    <div class="left text">
+                        Stud Count:
+                    </div>
+                    <div class="right">
+                        <input type="button" data-mini="true" id="boltpat-go" value="Go"/>			  
+                    </div>
+                    <div class="footer"></div>
+                    <label for="boltpat-select">Pattern type:</label>
+                    <select data-mini="true" name="boltpat-select" id="boltpat-select">
+                        <option>Rolling 4-pt</option>
+                        <option>Rolling 8-pt</option>
+                    </select>
+                </div> <!--Bolt Input-->
+                <hr>
+                <div id="boltpat-out">
+                    Pattern:  
+                </div>
+                <hr>
+                <div id="boltpat-vis">    
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1<br>
+                    <br>
+                    4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3<br> 
+                    <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2
+                </div> 
+                
+                <!--
+                <div id="boltpat-vis">    
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5<br>
+                  4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3<br> 
+                  &nbsp;&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2
+                </div>
+                -->
+                
+                
+                
+            </div>   <!--content-->
+        </div> <!-- page -->
+    </body>
 </html>
 
 

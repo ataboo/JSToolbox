@@ -1,79 +1,79 @@
 <!DOCTYPE html>
 <html class="no-js">
-  <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Boilermaker JBox</title>
-	<meta name="description" content="Atasoft Boilermaker Tools.">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Boilermaker JBox</title>
+        <meta name="description" content="Atasoft Boilermaker Tools.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
         <link rel="apple-touch-icon" href="/apple-touch-icon.png">
         <link rel="shortcut icon" href="http://atasoft.altervista.org/favicon.ico" />
-
-	<!--<link rel="stylesheet" href="css/normalize.css">
-	<link rel="stylesheet" href="css/main.css">-->
-	<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
-	<link rel="stylesheet" href="css/ata.bmtoolbox.css">
-<script>
-if (typeof jQuery === 'undefined')
-{
-	document.write('<script src="js/vendor/jquery-1.11.1.min.js"><\/script>');
-	document.write('<script src="js/vendor/jquery.mobile-1.4.5.min.js"><\/script>');
-	document.write('<script src="js/vendor/fastclick.js"><\/script>');
-	document.write('<script src="js/plugins.js"><\/script>');};
-</script>
-  </head>
-  <body>
-	<!--[if lt IE 8]>
-	<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-	<![endif]-->
-
-	<!-- Add your site or application content here --> 
-	<div data-role="page" id="flange-page">
-        <script src="js/flangetable.js"></script>
-	  <div data-role="header" data-id="navbarlinker" data-position="fixed">
-		<div data-role="navbar" class="head-navbar">
-		  <ul>
-			<li><a href="index.html" class="ui-btn-active ui-state-persist">Flange-Calc</a></li>
-			<li><a href="wagecalc.html">Wage-Calc</a></li>
-			<li><a href="boltpattern.html">Bolt Pattern</a></li>
-		  </ul>
-                  <button id="about-but-flange" class="ui-btn ui-icon-info ui-btn-icon-notext aboutb" ></button>
-		</div><!-- /navbar -->
-	  </div><!-- /header -->
-	  <div class="flange-wrapper">
-		<h1>ASME Flange Tables</h1>
-		<h3>By Flange Size:</h3>
-		<div data-role="fieldcontain">
-		  <fieldset data-role="controlgroup" data-type="horizontal">
-			<label for="select-flange-size">Flange Size</label>
-			<select class="flange-sel" name="select-flange-size" id="select-flange-size">
-			  <option>Size</option>
-			</select>
-			<label for="select-flange-rating">Flange Rating</label>
-			<select class="flange-sel" name="select-flange-rating" id="select-flange-rating">
-			  <option>Rating</option>
-			</select>
-			<button name="flange-send" id="flange-send">
-			  Send
-			</button>
-		  </fieldset>
-		</div>		
-		<br> 
-		<h3>By Stud Size:</h3>
-		<div data-role="fieldcontain">
-		  <fieldset data-role="controlgroup" data-type="horizontal">
-			<label for="stud-select">Flange Size</label>
-			<select class="flange-sel" name="stud-sel" id="stud-select">
-			  <option>Stud Size</option>
-			</select>
-			<button name="stud-send" id="stud-send">
-			  Send
-			</button>
-		  </fieldset>
-		</div>		
-	  </div>
-	</div>
-  </body>
+        
+        <!--<link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">-->
+        <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+        <link rel="stylesheet" href="css/ata.bmtoolbox.css">
+        <script>
+            if (typeof jQuery === 'undefined')
+            {
+                document.write('<script src="js/vendor/jquery-1.11.1.min.js"><\/script>');
+                document.write('<script src="js/vendor/jquery.mobile-1.4.5.min.js"><\/script>');
+                document.write('<script src="js/vendor/fastclick.js"><\/script>');
+                document.write('<script src="js/plugins.js"><\/script>');};
+        </script>
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <!-- Add your site or application content here --> 
+        <div data-role="page" id="flange-page">
+            <script src="js/flangetable.js"></script>
+            <div data-role="header" data-id="navbarlinker" data-position="fixed">
+                <div data-role="navbar" class="head-navbar">
+                    <ul>
+                        <li><a href="index.html" class="ui-btn-active ui-state-persist">Flange-Calc</a></li>
+                        <li><a href="wagecalc.html">Wage-Calc</a></li>
+                        <li><a href="boltpattern.html">Bolt Pattern</a></li>
+                    </ul>
+                    <button id="about-but-flange" class="ui-btn ui-icon-info ui-btn-icon-notext aboutb" ></button>
+                </div><!-- /navbar -->
+            </div><!-- /header -->
+            <div class="flange-wrapper">
+                <h1>ASME Flange Tables</h1>
+                <h3>By Flange Size:</h3>
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup" data-type="horizontal">
+                        <label for="select-flange-size">Flange Size</label>
+                        <select class="flange-sel" name="select-flange-size" id="select-flange-size">
+                            <option>Size</option>
+                        </select>
+                        <label for="select-flange-rating">Flange Rating</label>
+                        <select class="flange-sel" name="select-flange-rating" id="select-flange-rating">
+                            <option>Rating</option>
+                        </select>
+                        <button name="flange-send" id="flange-send">
+                            Send
+                        </button>
+                    </fieldset>
+                </div>		
+                <br> 
+                <h3>By Stud Size:</h3>
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup" data-type="horizontal">
+                        <label for="stud-select">Flange Size</label>
+                        <select class="flange-sel" name="stud-sel" id="stud-select">
+                            <option>Stud Size</option>
+                        </select>
+                        <button name="stud-send" id="stud-send">
+                            Send
+                        </button>
+                    </fieldset>
+                </div>		
+            </div>
+        </div>
+    </body>
 </html>
